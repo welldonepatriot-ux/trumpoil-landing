@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TrumpOil — Official Token Landing</title>
+  <meta name="description" content="Landing page skeleton for a memecoin inspired by real oil technology. Replace placeholders with oil/patent copy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0f16;
+      --panel: #0f1420;
+      --fg: #ffffff;
+      --muted: #b1bdd3;
+      --red: #e31d2b;
+      --gold: #f4c542;
+      --blue: #1e90ff;
+      --border: #1c2435;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--fg); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 20px; }
+    header { position: sticky; top:0; z-index: 10; background: rgba(12,15,22,0.8); backdrop-filter: blur(6px); border-bottom: 1px solid var(--border); }
+    .nav { display:flex; justify-content: space-between; align-items: center; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight: 800; letter-spacing: 0.2px; }
+    .brand-badge { width:36px; height:36px; border-radius: 10px; background: linear-gradient(135deg, #e31d2b, #6b1119); }
+    .menu { display:flex; gap:18px; font-weight:600; }
+    .hero { position: relative; text-align:center; padding: 72px 0 56px; background: radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,0.09), transparent); }
+    .eyebrow { display:inline-block; background:#121828; border:1px solid var(--border); color:#c6d2e3; padding:8px 14px; border-radius:999px; font-size:13px; margin-bottom:14px; }
+    .title { font-family: Oswald, Impact, Inter, sans-serif; font-weight: 700; font-size: clamp(38px, 6vw, 80px); line-height: 1.02; letter-spacing: 0.5px; text-transform: uppercase; margin: 0 0 10px; }
+    .subtitle { color: var(--muted); max-width: 920px; margin: 0 auto 22px; font-size: clamp(16px, 2.4vw, 22px); }
+    .cta { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:center; margin-top: 10px; }
+    .btn { appearance:none; border:none; cursor:pointer; padding: 14px 22px; border-radius: 14px; font-weight:800; letter-spacing:0.3px; }
+    .btn-red { background: var(--red); color: #fff; }
+    .btn-gold { background: var(--gold); color: #111; }
+    .pill { display:inline-block; padding:8px 12px; border-radius:999px; border:1px solid var(--border); background:#121828; color:#cbd4e5; font-size:12px; }
+    .legal-inline { font-size: 12px; color: #98a3ba; margin-top: 8px; }
+    section { padding: 36px 0; }
+    .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+    .h2 { font-family: Oswald, Inter, sans-serif; text-transform: uppercase; font-size: 28px; margin: 0 0 12px; letter-spacing: 0.4px; }
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: 1 / -1; }
+    @media (max-width: 980px) { .col-4, .col-6 { grid-column: 1 / -1; } }
+    .muted { color: var(--muted); }
+    ol.steps { margin: 0; padding-left: 18px; }
+    ol.steps li { margin: 6px 0; }
+    details { background:#0e1421; border:1px solid var(--border); border-radius:12px; padding:14px 16px; margin:10px 0; }
+    summary { cursor:pointer; font-weight:700; }
+    footer { border-top:1px solid var(--border); color:#9aa6be; font-size: 13px; }
+    .foot-grid { display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 20px; }
+    @media (max-width: 980px) { .foot-grid { grid-template-columns: 1fr; } }
+    /* Sticky mobile CTA bar */
+    .sticky-cta{position:fixed;left:0;right:0;bottom:0;background:var(--panel);border-top:1px solid var(--border);padding:10px 12px;display:none;z-index:20}
+    .sticky-cta .wrap{display:flex;gap:10px;align-items:center;justify-content:center}
+    .sticky-cta .amounts{display:flex;gap:8px}
+    .sticky-cta .amounts .amt{padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#121828;color:#cbd4e5;font-weight:800;cursor:pointer}
+    .sticky-cta .amounts .amt.active{outline:2px solid var(--gold);color:#fff}
+    .sticky-cta .buy{background:var(--red);color:#fff;border:none;border-radius:12px;padding:12px 18px;font-weight:900;cursor:pointer}
+    @media (max-width:980px){.sticky-cta{display:block}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true"></div>
+        <div>TRUMPOIL</div>
+      </div>
+      <nav class="menu">
+        <a href="#buy">Buy</a>
+        <a href="#about">About</a>
+        <a href="#how">How to Buy</a>
+        <a href="#contract">Contract</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div class="eyebrow">The Patriot Oil Token</div>
+      <h1 class="title">THE ONLY OFFICIAL TOKEN — OIL / PATENT THEME</h1>
+      <p class="subtitle">Replace this line with your one-sentence promise (oil technology, patent reference, fixed supply, tradeable later). Keep it short and bold.</p>
+      <div class="cta" id="buy">
+        <button class="btn btn-red" id="buyCard">BUY NOW WITH DEBIT CARD</button>
+        <button class="btn btn-gold" id="buyCrypto">BUY NOW WITH CRYPTO</button>
+        <a class="pill" id="caSol" href="#">Solana CA: <strong><!-- paste SOL mint here --></strong></a>
+      </div>
+      <p class="legal-inline">*Tokens/NFTs are collectible digital items inspired by oil technology & patents and do not represent legal ownership or investment rights.*</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="panel">
+        <div class="h2">THE ONLY OFFICIAL [YOUR TOKEN] STATEMENT</div>
+        <p class="muted">Short celebratory line here. Example: “Celebrate innovation. Have fun.” Replace text to match your oil/patent theme.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap grid">
+      <div class="panel col-6">
+        <div class="h2">Mission</div>
+        <p class="muted">Write 3–5 lines about your community’s mission (energy independence, innovation, optimism). Keep it positive and meme-friendly.</p>
+      </div>
+      <div class="panel col-6">
+        <div class="h2">About the Token</div>
+        <ul class="muted" style="margin:0; padding-left:18px;">
+          <li><strong>Chain:</strong> Solana (SPL)</li>
+          <li><strong>Supply:</strong> 1,000,000 (fixed)</li>
+          <li><strong>Decimals:</strong> 6</li>
+          <li><strong>Theme:</strong> Oil technology & patent reference</li>
+          <li><strong>DEX:</strong> Listing planned (future)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="panel">
+        <div class="h2">How to Buy</div>
+        <ol class="steps">
+          <li><strong>Choose</strong> — Pick “Buy with Card” or “Buy with Crypto”.</li>
+          <li><strong>Checkout</strong> — Hosted checkout creates a custodial wallet if you don’t have one.</li>
+          <li><strong>Receive</strong> — Tokens/NFT arrive in your wallet; save the email to access it.</li>
+        </ol>
+        <div class="cta" style="margin-top:12px;">
+          <button class="btn btn-red" id="howBuyCard">BUY WITH CARD</button>
+          <button class="btn btn-gold" id="howBuyCrypto">BUY WITH CRYPTO</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contract">
+    <div class="wrap grid">
+      <div class="panel col-6">
+        <div class="h2">Solana Contract Address</div>
+        <p class="muted">CA: <span id="solMint"><!-- paste SOL mint address here --></span> <button class="btn" style="padding:8px 12px; margin-left:8px;" id="copySol">Copy</button></p>
+        <p class="muted">You can find the token on: <a href="#" id="solScan">Solscan</a> · <a href="#" id="solFm">SolanaFM</a></p>
+      </div>
+      <div class="panel col-6">
+        <div class="h2">Buy Easily</div>
+        <p class="muted">Use our partners to buy with card or crypto.</p>
+        <div class="cta">
+          <button class="btn btn-red" id="partnerCard">BUY NOW</button>
+          <button class="btn btn-gold" id="partnerCrypto">BUY NOW</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="h2">Frequently Asked Questions</div>
+      <details>
+        <summary>Is this an official product?</summary>
+        <p class="muted">Replace with your statement. Example: This is the only official site for [YOUR TOKEN].</p>
+      </details>
+      <details>
+        <summary>What is the official contract address and symbol?</summary>
+        <p class="muted">Symbol: $TRUMPOIL (replace). Contract: see “Solana Contract Address” above.</p>
+      </details>
+      <details>
+        <summary>How can I get the token?</summary>
+        <p class="muted">Buy with card/crypto using the buttons above. A wallet will be created for you if needed.</p>
+      </details>
+      <details>
+        <summary>Which network is used?</summary>
+        <p class="muted">Solana (SPL standard).</p>
+      </details>
+      <details>
+        <summary>What else should I know?</summary>
+        <p class="muted">Always verify the contract address on official channels. Never share your seed phrase.</p>
+      </details>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap foot-grid">
+      <div>
+        <strong>Disclaimer:</strong>
+        <p class="muted">Tokens and NFTs are collectible digital items inspired by oil technology and patents and are not an investment, security, or legal ownership of any IP. This site is not affiliated with any political campaign or governmental agency. Replace with your final legal text.</p>
+        <p class="muted">We will never contact you to request personal information or wallet keys.</p>
+      </div>
+      <div>
+        <div class="h2">More</div>
+        <ul style="margin:0; padding-left:18px" class="muted">
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Card Allocation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="h2">Social</div>
+        <ul style="margin:0; padding-left:18px" class="muted">
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">Telegram</a></li>
+          <li><a href="#">Truth Social</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="h2">Contact</div>
+        <ul style="margin:0; padding-left:18px" class="muted">
+          <li><a href="mailto:support@example.com">support@example.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="wrap" style="padding-bottom:72px;">
+      <p class="muted">© 2025 Your Project Name. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Sticky bottom CTA (mobile-first) -->
+  <div class="sticky-cta" id="stickyCta" aria-label="Quick purchase bar">
+    <div class="wrap">
+      <span class="muted" style="font-weight:800;">Buy with card:</span>
+      <div class="amounts" role="group" aria-label="Select amount">
+        <button class="amt active" data-amt="25">$25</button>
+        <button class="amt" data-amt="50">$50</button>
+        <button class="amt" data-amt="100">$100</button>
+        <button class="amt" data-amt="1000">$1,000</button>
+      </div>
+      <button class="buy" id="stickyBuy">Buy Now</button>
+    </div>
+  </div>
+
+  <script>
+    // === PLACEHOLDERS TO FILL ===
+    const SOL_MINT = ""; // paste your Solana mint address
+    const CHECKOUT_CARD_URL = "#"; // default card checkout (optional)
+    const CHECKOUT_CRYPTO_URL = "#"; // crypto on-ramp or DEX link (future)
+
+    // Map specific card checkouts per amount (Crossmint hosted links)
+    const CHECKOUT_CARD_URLS = {
+      25: "#",   // e.g. https://www.crossmint.com/checkout/xxxxx-25
+      50: "#",   // e.g. https://www.crossmint.com/checkout/xxxxx-50
+      100: "#",  // e.g. https://www.crossmint.com/checkout/xxxxx-100
+      1000: "#", // e.g. https://www.crossmint.com/checkout/xxxxx-1000
+    };
+
+    // Write mint to UI
+    document.getElementById('solMint').textContent = SOL_MINT || "(paste your SOL mint)";
+    document.getElementById('caSol').href = SOL_MINT ? `https://solscan.io/token/${SOL_MINT}` : "#";
+
+    // Copy button
+    const copy = (txt) => navigator.clipboard && navigator.clipboard.writeText(txt);
+    document.getElementById('copySol').onclick = () => { if (SOL_MINT) { copy(SOL_MINT); alert('Copied Solana CA'); } };
+
+    // Open links
+    const openWin = (url) => window.open(url, '_blank');
+    ['buyCard','howBuyCard','partnerCard'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.onclick = () => openWin(CHECKOUT_CARD_URL);
+    });
+    ['buyCrypto','howBuyCrypto','partnerCrypto'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.onclick = () => openWin(CHECKOUT_CRYPTO_URL);
+    });
+
+    // Explorer links
+    document.getElementById('solScan').onclick = (e) => { e.preventDefault(); if (SOL_MINT) openWin(`https://solscan.io/token/${SOL_MINT}`); };
+    document.getElementById('solFm').onclick = (e) => { e.preventDefault(); if (SOL_MINT) openWin(`https://solana.fm/address/${SOL_MINT}`); };
+
+    // Sticky CTA logic
+    let selectedAmt = 25;
+    document.querySelectorAll('.amt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        selectedAmt = parseInt(btn.dataset.amt, 10);
+        document.querySelectorAll('.amt').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+    document.getElementById('stickyBuy').addEventListener('click', () => {
+      const url = CHECKOUT_CARD_URLS[selectedAmt];
+      if (!url || url === '#') { alert(`Set checkout URL for $${selectedAmt} in the code.`); return; }
+      openWin(url);
+    });
+  </script>
+</body>
+</html>
